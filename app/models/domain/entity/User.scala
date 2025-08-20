@@ -17,6 +17,14 @@ case class User(
 ) {}
 
 object User {
+  def apply(email: String, username: String, password: String): User = User(
+    UUID.randomUUID(),
+    email,
+    username,
+    password,
+    Instant.now(),
+    Instant.now()
+  )
   given Writes[User] = new Writes[User] {
     def writes(o: User): JsValue = Json.obj(
       "id"       -> o.id,
