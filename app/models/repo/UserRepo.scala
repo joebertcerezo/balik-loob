@@ -38,4 +38,7 @@ class UserRepo @Inject() (
 
   def get(id: UUID): Future[User] =
     db.run(users.filter(_.id === id).result.head)
+
+  def create(user: User): Future[Int] =
+    db.run(users += user)
 }
