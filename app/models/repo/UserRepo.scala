@@ -36,8 +36,8 @@ class UserRepo @Inject() (
 
   lazy val users = TableQuery[UserTable]
 
-  def get(id: UUID): Future[User] =
-    db.run(users.filter(_.id === id).result.head)
+  def get(id: UUID): Future[Option[User]] =
+    db.run(users.filter(_.id === id).result.headOption)
 
   def create(user: User): Future[Int] =
     db.run(users += user)
