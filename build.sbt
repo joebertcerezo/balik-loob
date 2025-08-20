@@ -9,10 +9,11 @@ scalaVersion := "3.3.1"
 
 libraryDependencies ++= Seq(
   guice,
-  "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.2" % Test,
-  "org.playframework" %% "play-slick" % "6.2.0",
-  "org.playframework" %% "play-slick-evolutions" % "6.2.0",
-  "org.postgresql" % "postgresql" % "42.7.7"
+  "org.scalatestplus.play" %% "scalatestplus-play"    % "7.0.2" % Test,
+  "org.playframework"      %% "play-slick"            % "6.2.0",
+  "org.playframework"      %% "play-slick-evolutions" % "6.2.0",
+  "org.postgresql"          % "postgresql"            % "42.7.7",
+  "org.typelevel"          %% "cats-core"             % "2.13.0"
 )
 
 // Adds additional packages into Twirl
