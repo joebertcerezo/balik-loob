@@ -4,6 +4,7 @@ import javax.inject.*
 
 import play.api.*
 import play.api.mvc.*
+import play.api.libs.json.*
 
 /**
  * This controller creates an `Action` to handle HTTP requests to the
@@ -20,6 +21,6 @@ class HomeController @Inject() (val controllerComponents: ControllerComponents)
    * called when the application receives a `GET` request with a path of `/`.
    */
   def index() = Action { implicit request: Request[AnyContent] =>
-    Ok(views.html.index())
+    Ok(Json.obj("server" -> "running..."))
   }
 }
