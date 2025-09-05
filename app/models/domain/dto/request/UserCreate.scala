@@ -1,5 +1,8 @@
 package models.domain.dto.request
 
+import play.api.libs.json.Format
+import play.api.libs.json.Json
+
 import models.domain.entity.User
 
 case class UserCreate(
@@ -12,4 +15,11 @@ case class UserCreate(
     username,
     password
   )
+}
+
+object UserCreate {
+  def unapply(user: UserCreate): Option[(String, String, String)] = Some(
+    Tuple.fromProductTyped(user)
+  )
+  given userCreateFormat: Format[UserCreate] = Json.format[UserCreate]
 }
