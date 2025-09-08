@@ -14,6 +14,7 @@ import play.api.db.slick.DatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 
 import models.domain.entity.User
+import models.domain.dto.request.UserUpdate
 
 @Singleton
 class UserRepo @Inject() (
@@ -36,9 +37,12 @@ class UserRepo @Inject() (
 
   lazy val users = TableQuery[UserTable]
 
-  def get(id: UUID): Future[Option[User]] =
+  def find(id: UUID): Future[Option[User]] =
     db.run(users.filter(_.id === id).result.headOption)
 
   def create(user: User): Future[Int] =
     db.run(users += user)
+
+  def update(id: UUID, user: UserUpdate): Future[Int] =
+    db.run(users.filter(_.id === id).update(user.toDomain()))
 }
